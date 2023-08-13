@@ -7,6 +7,7 @@ import { TableService } from '../../table.service';
 import { TableRecord } from 'src/app/models/models';
 import { MatDialog } from '@angular/material/dialog';
 import { TableDeleteDialogComponent } from '../table-delete-dialog/table-delete-dialog.component';
+import { TableDialogService } from '../../table-dialog.service';
 
 
 
@@ -27,7 +28,7 @@ export class TableListComponent implements AfterViewInit, OnInit {
 
   displayedColumns = ['number', 'available', 'persons', 'actions'];
 
-  constructor(private tablesService: TableService, public dialog: MatDialog) {
+  constructor(private tablesService: TableService, private tableDialogService: TableDialogService) {
   }
 
   ngOnInit(): void {
@@ -45,12 +46,10 @@ export class TableListComponent implements AfterViewInit, OnInit {
   }
 
   delete() {
-    // this.tablesService.delete(this.selectedTable!.id!)
-    this.dialog.open(TableDeleteDialogComponent)
+    this.tableDialogService.openDeleteDialog(this.selectedTable!)
   }
 
-  // update() {
-  //   this.tablesService.update(this.selectedTable!.id!, this.selectedTable!)
-  // }
-
+  update() {
+    this.tableDialogService.openUpdateDialog(this.selectedTable!)
+  }
 }

@@ -7,6 +7,7 @@ import { TableListComponent } from './components/table-list/table-list.component
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ContainerComponent } from './components/container/container.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const tablesRoutes: Routes = [
   { path: "", component: ContainerComponent}
@@ -18,13 +19,14 @@ const tablesRoutes: Routes = [
     TableDeleteDialogComponent,
     TableUpdateDialogComponent,
     TableListComponent,
-    ContainerComponent
+    ContainerComponent,
+
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(tablesRoutes),
     MaterialModule,
-
+    ReactiveFormsModule
   ]
 })
 export class TableModule { }

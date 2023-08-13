@@ -1,45 +1,42 @@
 import { Injectable } from '@angular/core';
 import { CRUDService } from '../models/crudService';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
+import { MenuCategoryRecord } from '../models/models';
+import { PocketbaseService } from '../core/pocketbase.service';
+import PocketBase from 'pocketbase';
 
-export interface MenuItem {
-  id: string
-  name: string,
-  price: number
-}
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class MenuCategoryService implements CRUDService<MenuCategoryRecord>  {
 
-  private ListSubject: BehaviorSubject<MenuItem[]> = new BehaviorSubject<MenuItem[]>([])
-  public all$: Observable<MenuItem[]> = this.ListSubject.asObservable()
+  private pb: PocketBase;
 
-  private IndividualSubject: BehaviorSubject<MenuItem | null> = new BehaviorSubject<MenuItem | null>(null)
-  public one$: Observable<MenuItem | null> = this.IndividualSubject.asObservable()
+  constructor(private pbService: PocketbaseService) {
+    this.pb = pbService.getPB()
+  }
 
-  constructor() { }
+  getAll(): Observable<MenuCategoryRecord[]> {
+    return from(this.pb.collection('MenuCategory').getFullList<MenuCategoryRecord>())
+  }
 
-  // getAll(): Observable<MenuItem[]> {
+  getOne(id: string): Observable<MenuCategoryRecord> {
+    return from(this.pb.collection('MenuCategory').getOne<MenuCategoryRecord>(id))
 
-  // }
+  }
 
-  // getOne(id: string): Observable<MenuItem> {
+  create(t: MenuCategoryRecord): Observable<MenuCategoryRecord> {
+    return from(this.pb.collection('MenuCategory').create<MenuCategoryRecord>(t))
 
-  // }
+  }
 
-  // create(t: MenuItem): Observable<MenuItem> {
+  update(id: string, t: MenuCategoryRecord): Observable<MenuCategoryRecord> {
+    return from(this.pb.collection('MenuCategory').update<MenuCategoryRecord>(id, t))
+  }
 
-  // }
-
-  // update(id: string, t: MenuItem): Observable<MenuItem> {
-
-  // }
-
-  // delete(id: string): Observable<boolean> {
-
-  // }
-
+  delete(id: string): Observable<boolean> {
+    return from(this.pb.collection('MenuCategory').delete(id))
+  }
 
 }

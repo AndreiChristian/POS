@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TableService } from '../../table.service';
 import { TableRecord } from 'src/app/models/models';
 import { Subscription } from 'rxjs';
+import { TableDialogService } from '../../table-dialog.service';
 
 
 
@@ -28,7 +29,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
   tableData: TableRecord[] = []
   susbscription!: Subscription
 
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: TableService, private tableDialogService: TableDialogService) { }
 
   ngOnInit(): void {
     this.susbscription = this.tableService.getAll().subscribe(
@@ -37,6 +38,10 @@ export class ContainerComponent implements OnInit, OnDestroy {
         this.tableData = data
       }
     )
+  }
+
+  create() {
+    this.tableDialogService.openCreateDialog()
   }
 
   ngOnDestroy(): void {

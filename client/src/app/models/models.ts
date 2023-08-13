@@ -5,3 +5,7 @@ export interface TableRecord extends BaseRecord {
   available: boolean;
   maxPersons: number;
 }
+
+export interface MenuCategoryRecord extends BaseRecord {
+  name: string,
+}

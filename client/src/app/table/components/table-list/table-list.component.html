@@ -19,7 +19,8 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
-        <td mat-cell *matCellDef="let row"><button mat-icon-button (click)="selectTable(row)"
+        <td mat-cell *matCellDef="let row"><button mat-icon-button
+            (click)="selectTable(row)"
             [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button></td>
       </ng-container>
 
@@ -38,7 +39,7 @@
 </ng-container>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="update()">
     <mat-icon>update</mat-icon>
     <span>Update</span>
   </button>
