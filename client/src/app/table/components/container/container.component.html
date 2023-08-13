@@ -1,12 +1,16 @@
-<ng-container *ngIf="tableData.length ===0">
-  <mat-spinner></mat-spinner>
-</ng-container>
-<ng-container *ngIf="tableData.length !==0">
-  <div class="row">
-    <h1>Tables</h1>
-    <button mat-icon-button (click)="create()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <app-table-list [tableData]="tableData"></app-table-list>
-</ng-container>
+<app-container>
+
+  <ng-container *ngIf="tableData.length ===0">
+    <mat-spinner></mat-spinner>
+  </ng-container>
+  <ng-container *ngIf="tableData.length !==0">
+    <div class="row">
+      <h1>Tables</h1>
+      <button mat-icon-button (click)="create()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <app-table-list [tableData]="tableData"></app-table-list>
+  </ng-container>
+
+</app-container>

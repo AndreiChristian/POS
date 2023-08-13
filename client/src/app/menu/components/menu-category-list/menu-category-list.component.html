@@ -1,0 +1,10 @@
+<section>
+  <aside>
+    <ul>
+      <ng-container *ngFor="let m of menuCategories$ |async">
+        <li><a [routerLink]="[m.id!]">{{m.name}}</a></li>
+      </ng-container>
+    </ul>
+  </aside>
+  <router-outlet></router-outlet>
+</section>

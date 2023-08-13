@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ContainerComponent } from './components/container/container.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const tablesRoutes: Routes = [
   { path: "", component: ContainerComponent}
@@ -26,7 +27,8 @@ const tablesRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(tablesRoutes),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LayoutModule
   ]
 })
 export class TableModule { }

@@ -7,6 +7,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { LayoutContainerComponent } from './components/layout-container/layout-container.component';
 
 
 
@@ -15,7 +16,8 @@ import { MaterialModule } from '../material/material.module';
     NavigationComponent,
     NavbarComponent,
     SidenavComponent,
-    FooterComponent
+    FooterComponent,
+    LayoutContainerComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ],
   exports:[
-  NavigationComponent
+  NavigationComponent,
+  LayoutContainerComponent
   ]
 })
 export class AppLayoutModule { }
