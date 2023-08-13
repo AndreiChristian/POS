@@ -2,39 +2,40 @@ import { Injectable } from '@angular/core';
 import PocketBase, { Record } from 'pocketbase';
 import { Observable, from } from 'rxjs';
 import { PocketbaseService } from '../core/pocketbase.service';
+import { TableRecord } from '../models/models';
+import { CRUDService } from '../models/crudService';
 
-export interface Table {
-  id?: string,
-  number: number,
-  available: boolean,
-  maxPersons: number,
-}
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class TableService {
+export class TableService implements CRUDService<TableRecord> {
 
   private pb: PocketBase
 
-  constructor(private pbService: PocketbaseService) {
+  constructor(pbService: PocketbaseService) {
     this.pb = pbService.getPB()
   }
 
-  getOne(id: string): Observable<Table> {
-    return from(this.pb.collection('Table').getOne<Table>(id))
+  getOne(id: string): Observable<TableRecord> {
+    return from(this.pb.collection('Table').getOne<TableRecord>(id))
   }
 
-  getAll(): Observable<Table[]> {
-    return from(this.pb.collection("Table").getFullList<Table>())
+  getAll(): Observable<TableRecord[]> {
+    return from(this.pb.collection("Table").getFullList<TableRecord>())
   }
 
   delete(id: string): Observable<boolean> {
     return from(this.pb.collection('Table').delete('RECORD_ID'))
   }
 
-  update(id: string, table: Table): Observable<Table> {
-    return from(this.pb.collection('Table').update<Table>('RECORD_ID', table));
+  create(t: TableRecord): Observable<TableRecord> {
+    return from(this.pb.collection('Table').create<TableRecord>(t));
+  }
+
+  update(id: string, table: TableRecord): Observable<TableRecord> {
+    return from(this.pb.collection('Table').update<TableRecord>('RECORD_ID', table));
   }
 
 }

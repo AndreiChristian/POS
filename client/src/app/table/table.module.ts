@@ -4,13 +4,12 @@ import { TableCreateDialogComponent } from './components/table-create-dialog/tab
 import { TableDeleteDialogComponent } from './components/table-delete-dialog/table-delete-dialog.component';
 import { TableUpdateDialogComponent } from './components/table-update-dialog/table-update-dialog.component';
 import { TableListComponent } from './components/table-list/table-list.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
+import { ContainerComponent } from './components/container/container.component';
 
 const tablesRoutes: Routes = [
-  { path: "", component: TableListComponent }
+  { path: "", component: ContainerComponent}
 ]
 
 @NgModule({
@@ -18,14 +17,14 @@ const tablesRoutes: Routes = [
     TableCreateDialogComponent,
     TableDeleteDialogComponent,
     TableUpdateDialogComponent,
-    TableListComponent
+    TableListComponent,
+    ContainerComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(tablesRoutes),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    MaterialModule,
+
   ]
 })
 export class TableModule { }

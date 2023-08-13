@@ -1,0 +1,4 @@
+<ng-container *ngIf="tableData.length ===0">Loading</ng-container>
+<ng-container *ngIf="tableData.length !==0">
+  <app-table-list [tableData]="tableData"></app-table-list>
+</ng-container>
