@@ -9,3 +9,11 @@ export interface TableRecord extends BaseRecord {
 export interface MenuCategoryRecord extends BaseRecord {
   name: string,
 }
+
+export interface MenuItemRecord extends BaseRecord {
+  name: string,
+  description: string,
+  price: number,
+  CategoryId: string,
+
+}

@@ -8,10 +8,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ContainerComponent } from './components/container/container.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LayoutModule } from '@angular/cdk/layout';
+import { AppLayoutModule } from '../layout/layout.module';
 
 const tablesRoutes: Routes = [
-  { path: "", component: ContainerComponent}
+  { path: "", component: ContainerComponent }
 ]
 
 @NgModule({
@@ -28,7 +28,7 @@ const tablesRoutes: Routes = [
     RouterModule.forChild(tablesRoutes),
     MaterialModule,
     ReactiveFormsModule,
-    LayoutModule
+    AppLayoutModule
   ]
 })
 export class TableModule { }

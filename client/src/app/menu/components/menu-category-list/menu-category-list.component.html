@@ -1,5 +1,6 @@
 <section>
   <aside>
+    <h2>Categories</h2>
     <ul>
       <ng-container *ngFor="let m of menuCategories$ |async">
         <li><a [routerLink]="[m.id!]">{{m.name}}</a></li>
