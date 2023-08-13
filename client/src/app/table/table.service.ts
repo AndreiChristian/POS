@@ -14,7 +14,7 @@ export class TableService implements CRUDService<TableRecord> {
 
   private pb: PocketBase
 
-  constructor(pbService: PocketbaseService) {
+  constructor(pbService: PocketbaseService,) {
     this.pb = pbService.getPB()
   }
 
@@ -27,7 +27,7 @@ export class TableService implements CRUDService<TableRecord> {
   }
 
   delete(id: string): Observable<boolean> {
-    return from(this.pb.collection('Table').delete('RECORD_ID'))
+    return from(this.pb.collection('Table').delete(id))
   }
 
   create(t: TableRecord): Observable<TableRecord> {
@@ -35,7 +35,7 @@ export class TableService implements CRUDService<TableRecord> {
   }
 
   update(id: string, table: TableRecord): Observable<TableRecord> {
-    return from(this.pb.collection('Table').update<TableRecord>('RECORD_ID', table));
+    return from(this.pb.collection('Table').update<TableRecord>(id, table));
   }
 
 }

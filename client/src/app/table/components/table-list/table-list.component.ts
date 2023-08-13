@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { TableListDataSource, } from './table-list-datasource';
 import { TableService } from '../../table.service';
 import { TableRecord } from 'src/app/models/models';
+import { MatDialog } from '@angular/material/dialog';
+import { TableDeleteDialogComponent } from '../table-delete-dialog/table-delete-dialog.component';
 
 
 
@@ -19,21 +21,36 @@ export class TableListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table!: MatTable<TableRecord>;
   @Input() tableData: TableRecord[] = []
 
+  private selectedTable: TableRecord | null = null
+
   dataSource!: TableListDataSource
 
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['number', 'available', 'persons', 'actions'];
 
-  constructor(private tablesService: TableService) {
+  constructor(private tablesService: TableService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.dataSource = new TableListDataSource(this.tableData);
   }
 
-
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  selectTable(table: TableRecord) {
+    this.selectedTable = table
+  }
+
+  delete() {
+    // this.tablesService.delete(this.selectedTable!.id!)
+    this.dialog.open(TableDeleteDialogComponent)
+  }
+
+  // update() {
+  //   this.tablesService.update(this.selectedTable!.id!, this.selectedTable!)
+  // }
+
 }
